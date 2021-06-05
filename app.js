@@ -8,27 +8,23 @@ app.listen(4000, () => {
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-  blogs = [
-    {
-      title: "This is Title",
-      snippet: "This is snippet",
-    },
-    {
-      title: "This is Title",
-      snippet: "This is snippet",
-    },
-    {
-      title: "This is Title",
-      snippet: "This is snippet",
-    },
-  ];
-  res.render("index", { title: "Blogs", blogs });
+  res.render("index");
 });
 
 app.get("/about", (req, res) => {
-  res.render("about", { title: "About Page" });
+  res.render("about");
+});
+
+app.get("/blogs/create", (req, res) => {
+  res.render("create");
+});
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+app.get("/sign-up", (req, res) => {
+  res.render("sign-up");
 });
 
 app.use((req, res) => {
-  res.status(404).render("404", { title: "Lost Page" });
+  res.status(404).render("404");
 });

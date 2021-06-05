@@ -65,8 +65,38 @@
     .content {
       margin-left: 20px;
     }
-
     .create-blog form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .create-blog input,
+    .create-blog textarea {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 8px;
+    }
+    .create-blog label {
+      display: block;
+      margin-top: 24px;
+    }
+    textarea {
+      height: 120px;
+    }
+
+    button {
+      width: fit-content;
+      display: flex;
+      justify-content: center;
+      /* margin: 20px auto 0px; */
+      margin: 20px auto 0px;
+      border-radius: 5px;
+      background: crimson;
+      color: white;
+      padding: 6px 10px;
+      border: 0;
+      font-size: 1.2em;
+      cursor: pointer;
     }
   </style>
 </head>

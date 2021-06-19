@@ -9,12 +9,17 @@ const blogSchema = new Schema({
   },
   snippet: {
     type: String,
-    required: [true, "Sqnippet is required"],
+    required: [true, "Snippet is required"],
   },
   body: {
     type: String,
     required: [true, "Body is required"],
   },
+});
+
+blogSchema.pre("save", function (next) {
+  console.log("A New Blog was saved");
+  next();
 });
 
 const Blog = mongoose.model("Blog", blogSchema);

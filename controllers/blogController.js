@@ -1,9 +1,26 @@
 const Blog = require("../models/blogModel");
 
+// ** Handle Errors
+const handleErrors = (err) => {
+  let errors = { title: "", snippet: "", body: "" };
+
+  if (err.code === 11000) {
+    errors.title = "That title is already taken";
+  }
+
+  if (err.message.includes("validation failed")) {
+    Object.values(err.errors).forEach(({ properties }) => {
+      errors[properties.path] = properties.message;
+    });
+  }
+
+  return errors;
+};
+
 const blog_index = (req, res) => {
+  console.log("in the controller");
   Blog.find()
     .then((blog) => {
-      console.log(blog);
       res.render("index", { blogs: blog, title: "Blogs Home" });
     })
     .catch((err) => {
@@ -16,31 +33,32 @@ const blog_create_get = (req, res) => {
 };
 
 const blog_create_post = (req, res) => {
+  console.log(req.body);
   const blog = new Blog(req.body);
+
   blog
     .save()
-    .then(() => {
-      res.redirect("/blogs");
+    .then((result) => {
+      res.json({ blog: result });
     })
     .catch((err) => {
-      console.log(err);
+      const errors = handleErrors(err);
+      res.json({ errors });
     });
 };
 
-const blog_details = (req, res) => {
-  Blog.findById(req.params.id)
-    .then((result) => {
-      res.render("details", { blog: result, title: blog.title });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.redirect("404", { title: "Not Found" });
-    });
+const blog_details = async (req, res) => {
+  const blog = await Blog.findById(req.params.id);
+  if (blog) {
+    res.render("details", { blog: blog, title: blog.title });
+  } else {
+    res.status(404).render("404", { title: "Lost Blog" });
+  }
 };
 
 const blog_delete = (req, res) => {
   Blog.findByIdAndDelete(req.params.id)
-    .then((result) => {
+    .then(() => {
       res.redirect("/blogs");
     })
     .catch((err) => {

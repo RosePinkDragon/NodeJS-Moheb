@@ -92,7 +92,7 @@ textarea {
 }
 
 .error {
-  color: red;
+  color: crimson;
 }
 
 .logbtn {
@@ -120,4 +120,36 @@ button {
   border: 0;
   font-size: 1.2em;
   cursor: pointer;
+}
+
+a h3 {
+  color: black;
+}
+
+a:hover h3 {
+  color: crimson;
+}
+
+.blog {
+  margin: 10px;
+  padding: 10px 5px;
+  position: relative;
+}
+
+.blog-title {
+  color: crimson;
+}
+
+.blog-snippet {
+  font-weight: bolder;
+  font-size: 1.5rem;
+  margin: 0px 0px 10px;
+}
+
+img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 30px;
+  width: 100%;
 }

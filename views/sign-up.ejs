@@ -5,11 +5,16 @@
     <%- include("./partials/nav.ejs") %>
 
     <div class="create-blog content">
-      <form>
-        <label for="title">Email:</label>
-        <input type="text" id="title" name="title" required />
-        <label for="snippet">Password:</label>
-        <input type="text" id="snippet" name="snippet" required />
+      <form action="/signup" method="POST">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required />
+        <div class="email error"></div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+        <div class="password error"></div>
+        <label for="c_password">Confirm Password:</label>
+        <input type="password" id="c_password" name="c_password" required />
+        <div class="c_password error"></div>
         <button>Submit</button>
       </form>
     </div>

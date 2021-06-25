@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
+const cookieParser = require("cookie-parser")
 const Blog = require("./models/blogModel");
 const blogRoutes = require("./routes/blogRoutes");
 const userRoutes = require("./routes/userRoutes");
@@ -28,6 +29,7 @@ mongoose
 // middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser())
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(morgan("dev"));

@@ -20,5 +20,27 @@
     </div>
 
     <%- include("./partials/footer.ejs") %>
+    <script>
+      const form = document.querySelector("form");
+      const emailError = document.querySelector(".email.error");
+      const passwordError = document.querySelector(".password.error");
+      const c_passwordError = document.querySelector(".c_password.error");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        emailError.textContent = "";
+        passwordError.textContent = "";
+        c_passwordError.textContent = "";
+
+        const email = form.email.value;
+        const password = form.password.value;
+        const c_password = form.c_password.value;
+
+        if (password !== c_password) {
+          c_passwordError.textContent = "Passwords Do'not Match";
+        }
+      });
+    </script>
   </body>
 </html>

@@ -5,8 +5,12 @@
   </div>
   <div>
     <div class="info">
-      <h3>Welcome, Moheb</h3>
+      <% if(user){ %>
+      <h3>Welcome, <%= user.email %></h3>
+      <a href="/log-out" class="logbtn">Log Out</a>
+      <%} else {%>
       <a href="/log-in" class="logbtn">Log In</a>
+      <% } %>
     </div>
     <ul>
       <li><a href="/blogs" class="link">Blogs</a></li>

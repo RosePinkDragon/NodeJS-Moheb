@@ -7,7 +7,7 @@ const handleErrors = (err) => {
 
   console.log(err.message);
   if (err.message === "Incorrect Details" || err.message === "User Not Found") {
-    errors.email = "Invalid Email Or Password";
+    errors.password = "Invalid Email Or Password";
 
     console.log(errors);
   }

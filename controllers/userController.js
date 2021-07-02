@@ -28,7 +28,7 @@ const handleErrors = (err) => {
 // Json Web Token
 const maxAge = 3 * 24 * 60 * 60 * 1000;
 const createToken = (id) => {
-  return jwt.sign({ id }, "somesecret", { expiresIn: maxAge });
+  return jwt.sign({ id }, process.env.SECRET, { expiresIn: maxAge });
 };
 
 // controller actions
@@ -64,4 +64,9 @@ module.exports.login_post = async (req, res) => {
     const errors = handleErrors(err);
     res.status(400).json({ errors });
   }
+};
+
+module.exports.logout_get = (req, res) => {
+  res.cookie("BlogsCookie", "", { maxAge: 1 });
+  res.redirect("/");
 };

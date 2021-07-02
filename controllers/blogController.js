@@ -18,7 +18,6 @@ const handleErrors = (err) => {
 };
 
 const blog_index = (req, res) => {
-  console.log("in the controller");
   Blog.find()
     .then((blog) => {
       res.render("index", { blogs: blog, title: "Blogs Home" });

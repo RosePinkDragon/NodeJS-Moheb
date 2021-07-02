@@ -146,6 +146,14 @@ a:hover h3 {
   margin: 0px 0px 10px;
 }
 
+.login-box p {
+  text-transform: lowercase;
+}
+.login-box {
+  display: flex;
+  text-transform: capitalize;
+}
+
 img {
   position: absolute;
   top: 0;

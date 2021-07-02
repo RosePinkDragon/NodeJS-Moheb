@@ -36,7 +36,6 @@ app.use(express.static("public"));
 app.use(morgan("dev"));
 
 app.get("*", checkUser);
-
 app.use("/blogs", blogRoutes);
 app.use(userRoutes);
 

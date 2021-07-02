@@ -2,8 +2,7 @@ const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 
 const checkUser = (req, res, next) => {
-  const token = req.cookies.BlogCookie;
-
+  const token = req.cookies.BlogsCookie;
   if (token) {
     jwt.verify(token, process.env.SECRET, async (err, decodedToken) => {
       if (err) {
@@ -15,11 +14,15 @@ const checkUser = (req, res, next) => {
           res.locals.user = null;
           next();
         }
+        console.log(decodedToken);
         res.locals.user = user;
         next();
       }
     });
   } else {
     res.locals.user = null;
+    next();
   }
 };
+
+module.exports = checkUser;

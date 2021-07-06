@@ -25,4 +25,22 @@ const checkUser = (req, res, next) => {
   }
 };
 
-module.exports = checkUser;
+const requireUser = (req, res, next) => {
+  const token = req.cookies.BlogsCookie;
+
+  if (token) {
+    jwt.verify(token, process.env.SECRET, async (err, decodedToken) => {
+      if (err) {
+        console.log(err);
+        res.redirect("/log-in");
+      } else {
+        console.log(decodedToken);
+        next();
+      }
+    });
+  } else {
+    res.redirect("/log-in");
+  }
+};
+
+module.exports = { checkUser, requireUser };

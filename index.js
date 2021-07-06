@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const Blog = require("./models/blogModel");
 const blogRoutes = require("./routes/blogRoutes");
 const userRoutes = require("./routes/userRoutes");
-const checkUser = require("./middleware/checkUser");
+const { checkUser } = require("./middleware/checkUser");
 
 require("dotenv").config();
 
